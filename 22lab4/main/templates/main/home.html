@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="pages-list">
+    <h2>Доступні сторінки:</h2>
+    <ul>
+        {% for page in pages %}
+            <li><a href="{% url page.url %}">{{ page.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %} 

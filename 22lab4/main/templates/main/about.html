@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="student-info">
+    <h2>Інформація про студента:</h2>
+    <ul>
+        <li>Ім'я: {{ student_info.name }}</li>
+        <li>Прізвище: {{ student_info.surname }}</li>
+        <li>Вік: {{ student_info.age }}</li>
+        <li>Курс: {{ student_info.course }}</li>
+    </ul>
+</div>
+{% endblock %} 

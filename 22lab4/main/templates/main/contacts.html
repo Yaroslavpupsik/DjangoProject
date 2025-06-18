@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="contact-info">
+    <h2>Контактна інформація:</h2>
+    <ul>
+        <li>Email: {{ contact_info.email }}</li>
+        <li>Телефон: {{ contact_info.phone }}</li>
+        <li>Соціальні мережі: {{ contact_info.social }}</li>
+    </ul>
+</div>
+{% endblock %} 

@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="education-info">
+    <h2>Інформація про навчання:</h2>
+    <ul>
+        <li>Спеціальність: {{ education_info.specialty }}</li>
+        <li>Група: {{ education_info.group }}</li>
+        <li>Середній бал: {{ education_info.average_grade }}</li>
+        <li>Предмети:
+            <ul>
+                {% for subject in education_info.subjects %}
+                    <li>{{ subject }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</div>
+{% endblock %} 
