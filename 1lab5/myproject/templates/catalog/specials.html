@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Акції та знижки</h1>
+<p class="lead">Спеціальні пропозиції та акційні товари</p>
+
+{% if special_offers %}
+<div class="row">
+    {% for product in special_offers %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-danger">
+            <div class="card-header bg-danger text-white">
+                <h5 class="card-title mb-0">Акція</h5>
+            </div>
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ product.name }}</h4>
+                <p class="card-text">
+                    <span class="h4 text-danger fw-bold">{{ product.price }} грн</span>
+                    <br>
+                    <span class="text-muted text-decoration-line-through">{{ product.old_price }} грн</span>
+                    <span class="badge bg-danger ms-2">
+                        -{{ product.get_discount_percent|floatformat:0 }}%
+                    </span>
+                </p>
+                <p class="text-muted">
+                    <small>Економія: {{ product.get_discount_amount|floatformat:2 }} грн</small>
+                </p>
+                <a href="{{ product.get_absolute_url }}" class="btn btn-danger">Детальніше</a>
+            </div>
+            {% if product.is_new %}
+            <div class="card-footer">
+                <span class="badge bg-success">Новинка</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    Наразі акційних пропозицій немає. Будь ласка, завітайте пізніше.
+</div>
+{% endif %}
+
+<div class="alert alert-warning mt-4">
+    <h5>Умови акції:</h5>
+    <ul>
+        <li>Знижки не поєднуються з іншими акційними пропозиціями</li>
+        <li>Кількість товару за акційною ціною обмежена</li>
+        <li>Акція діє до закінчення залишків товару</li>
+    </ul>
+</div>
+
+<div class="text-center mt-4">
+    <a href="{% url 'product_list' %}" class="btn btn-outline-primary">
+        <i class="bi bi-arrow-left"></i> Повернутися до каталогу
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h1>Контактна інформація</h1>
+        <p class="lead">Зв'яжіться з нами зручним для вас способом</p>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5>Наші контакти</h5>
+                <ul class="list-unstyled">
+                    {% for key, value in contacts.items %}
+                    <li class="mb-2">
+                        <strong>{{ key }}:</strong> {{ value }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5>Графік роботи</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Понеділок - П'ятниця:</strong> 9:00 - 18:00</li>
+                    <li><strong>Субота:</strong> 10:00 - 16:00</li>
+                    <li><strong>Неділя:</strong> Вихідний</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5>Напишіть нам</h5>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Ваше ім'я</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Телефон</label>
+                        <input type="tel" class="form-control" id="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Повідомлення</label>
+                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Надіслати</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <div class="ratio ratio-16x9">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d325515.6816598763!2d30.20387994691142!3d50.40169904049757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cf4ee15a4505%3A0x1b9a5d8c5f9eaf2e!2z0JrQuNGX0LIsIDAyMDAw!5e0!3m2!1suk!2sua!4v1620000000000!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>
+{% endblock %}

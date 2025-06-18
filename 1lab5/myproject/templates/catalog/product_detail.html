@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <div style="height: 300px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <span class="text-muted">Зображення товару</span>
+                </div>
+                <h2>{{ product.name }}</h2>
+                <p class="h3">
+                    <strong>{{ product.price }} грн</strong>
+                    {% if product.old_price %}
+                    <small class="text-muted text-decoration-line-through ms-2">{{ product.old_price }} грн</small>
+                    {% endif %}
+                </p>
+                <p class="text-{{ product.get_status_display_class }}">
+                    <strong>{{ product.get_status_display }}</strong>
+                </p>
+                <p>Код товару: {{ product.id }}</p>
+                <p>Гарантія: {{ product.get_warranty_display }}</p>
+                
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary btn-lg">
+                        <i class="bi bi-cart-plus"></i> Додати до кошика
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="bi bi-heart"></i> В обране
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Опис товару</h5>
+            </div>
+            <div class="card-body">
+                {{ product.description|linebreaks }}
+                
+                <h5 class="mt-4">Характеристики</h5>
+                {{ product.features|linebreaks }}
+                
+                <div class="alert alert-info mt-4">
+                    <h6>Доставка</h6>
+                    <p class="mb-0">
+                        <i class="bi bi-truck"></i> Безкоштовна доставка по Україні при замовленні від 1000 грн
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if related_products %}
+<div class="row mt-4">
+    <div class="col-12">
+        <h3>Схожі товари</h3>
+        <div class="row">
+            {% for product in related_products %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ product.name }}</h6>
+                        <p class="card-text">
+                            <strong>{{ product.price }} грн</strong>
+                            {% if product.old_price %}
+                            <br><small class="text-muted text-decoration-line-through">{{ product.old_price }} грн</small>
+                            {% endif %}
+                        </p>
+                        <a href="{{ product.get_absolute_url }}" class="btn btn-sm btn-outline-primary">Детальніше</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="text-center mt-4">
+    <a href="{% url 'product_list' %}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Повернутися до каталогу
+    </a>
+</div>
+{% endblock %}

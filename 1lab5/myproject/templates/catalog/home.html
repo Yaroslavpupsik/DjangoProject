@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Ласкаво просимо до нашого магазину!</h1>
+    <p class="lead">Знайдіть найкращі товари за вигідними цінами.</p>
+    <hr class="my-4">
+    <p>Обирайте з тисячі товарів різних категорій.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'product_list' %}" role="button">Перейти до каталогу</a>
+</div>
+
+<h2>Рекомендовані товари</h2>
+<div class="row">
+    {% for product in featured_products %}
+    <div class="col-md-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} грн</p>
+                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Детальніше</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<h2>Навігація по сайту</h2>
+<ul class="list-group">
+    {% for page in pages %}
+    <li class="list-group-item">
+        <a href="{% url page.url_name %}">{{ page.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
